@@ -70,7 +70,7 @@ public class SphereCarController : MonoBehaviour
         // Pas drag aan afhankelijk van grondcontact en remmen
         rb.linearDamping = isGrounded ? (brake ? brakeDrag : groundDrag) : airDrag;
 
-        Vector3 velocity = rb.velocity;
+        Vector3 velocity = rb.linearVelocity;
         float speed = new Vector3(velocity.x, 0f, velocity.z).magnitude;
 
         // Voorwaartse richting geprojecteerd op grondvlak
@@ -82,7 +82,7 @@ public class SphereCarController : MonoBehaviour
         {
             float accel = throttle >= 0f ? acceleration : reverseAcceleration;
 
-            float forwardSpeed = Vector3.Dot(rb.velocity, forwardOnGround);
+            float forwardSpeed = Vector3.Dot(rb.linearVelocity, forwardOnGround);
             bool canAccelerateForward = (throttle > 0f && forwardSpeed < maxSpeed) ||
                                         (throttle < 0f && forwardSpeed > -maxSpeed * 0.6f);
 
@@ -112,12 +112,12 @@ public class SphereCarController : MonoBehaviour
             if (Mathf.Abs(steerAmount) > 0.0001f)
             {
                 Quaternion turn = Quaternion.AngleAxis(steerAmount, groundNormal);
-                Vector3 newVel = turn * rb.velocity;
-                newVel.y = rb.velocity.y; // behoud verticale snelheid
-                rb.velocity = newVel;
+                Vector3 newVel = turn * rb.linearVelocity;
+                newVel.y = rb.linearVelocity.y; // behoud verticale snelheid
+                rb.linearVelocity = newVel;
 
                 // Auto alleen om y-as draaien, voorkom kantelen
-                Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+                Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
                 if (flatVel.sqrMagnitude > 0.1f)
                 {
                     Vector3 flatForward = flatVel.normalized;
@@ -131,7 +131,7 @@ public class SphereCarController : MonoBehaviour
         if (isGrounded)
         {
             Vector3 rightOnGround = Vector3.Cross(groundNormal, forwardOnGround).normalized;
-            float lateralSpeed = Vector3.Dot(rb.velocity, rightOnGround);
+            float lateralSpeed = Vector3.Dot(rb.linearVelocity, rightOnGround);
 
             float grip = lateralGrip * (brake ? handbrakeGripMultiplier : 1f);
 
@@ -151,17 +151,17 @@ public class SphereCarController : MonoBehaviour
         }
 
         // Beperk horizontale snelheid tot maxSpeed
-        Vector3 horizontalVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        Vector3 horizontalVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
         if (horizontalVelocity.magnitude > maxSpeed)
         {
             Vector3 limitedVelocity = horizontalVelocity.normalized * maxSpeed;
-            rb.velocity = new Vector3(limitedVelocity.x, rb.velocity.y, limitedVelocity.z);
+            rb.linearVelocity = new Vector3(limitedVelocity.x, rb.linearVelocity.y, limitedVelocity.z);
         }
 
         // Visuele rotatie van de auto
         if (visualBody != null)
         {
-            Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+            Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
             if (flatVel.sqrMagnitude > 0.2f)
             {
                 Quaternion targetRot = Quaternion.LookRotation(flatVel.normalized, Vector3.up);
