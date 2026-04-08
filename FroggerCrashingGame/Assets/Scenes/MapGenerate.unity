@@ -339,14 +339,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d09be5ae04089e741a02ded558e0b2cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMapGen
-  mapLength: 1000
-  roadWidth: 1000
-  segmentLength: 10
-  roadPrefab: {fileID: 1787465748106635865, guid: 43b03a393aa0a4a43a1dc38e477295ca, type: 3}
-  frogPrefab: {fileID: 2503729970921295471, guid: 90596b4262df86f4d8f289835111ff29, type: 3}
+  mapLength: 100
+  roadWidth: 100
+  segmentLength: 100
+  roadPrefab: {fileID: 5950419793763843054, guid: d13a52f99e250784d95a5794dba8372b, type: 3}
+  frogPrefab: {fileID: 9153209481061663340, guid: 6a2e9aeeed0e3ba4ab0d03fc5fc760c5, type: 3}
   obstaclePrefab: {fileID: 5140935179026309745, guid: 6d84ec5699b9e9449b0f821c4b292157, type: 3}
-  frogsPerSegment: 3
-  frogSpawnHeight: 1
+  frogsPerSegment: 200
+  frogSpawnHeight: 2
   frogSpeed: 2
   frogJumpInterval: 5
   obstacleChance: 1
