@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4108063112804179061}
   - component: {fileID: 1100881724026248832}
-  - component: {fileID: 5426037649060389590}
-  - component: {fileID: 7287810823812086446}
   m_Layer: 0
   m_Name: JellyBear_ori
   m_TagString: Untagged
@@ -29,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 25.23, y: 454.6, z: 1250.48}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8724694740298733474}
@@ -60,45 +58,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &5426037649060389590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3648065987437342784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c610b8138ce9dc4f8b5ba0de4b8ecfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MoveUntilXThenDestroy
-  targetObject: {fileID: 8724030872539823772, guid: 9d50fc89f2e333b49b9a113f67fa4993, type: 3}
-  speed: 20
---- !u!136 &7287810823812086446
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3648065987437342784}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 7.1878834
-  m_Height: 14.375767
-  m_Direction: 1
-  m_Center: {x: 0.08622551, y: 6.3955383, z: 0}
 --- !u!1 &5601406988513988553
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,6 +71,8 @@ GameObject:
   - component: {fileID: 8724694740298733474}
   - component: {fileID: 4406288032030719476}
   - component: {fileID: 4921362096569269100}
+  - component: {fileID: 3272812993938152876}
+  - component: {fileID: 5303410820792071302}
   m_Layer: 0
   m_Name: default
   m_TagString: Untagged
@@ -189,3 +152,40 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &3272812993938152876
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5601406988513988553}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 7.725197
+  m_Height: 15.007905
+  m_Direction: 1
+  m_Center: {x: 0.0008800032, y: 7.359137, z: 0.8577091}
+--- !u!114 &5303410820792071302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5601406988513988553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c610b8138ce9dc4f8b5ba0de4b8ecfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoveUntilXThenDestroy
+  targetObject: {fileID: 8724030872539823772, guid: 9d50fc89f2e333b49b9a113f67fa4993, type: 3}
+  speed: 10
