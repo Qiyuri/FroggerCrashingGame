@@ -167,6 +167,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6498703892184726198, guid: a85075cc08acea046b82e0da93860344, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 6498703892184726198, guid: a85075cc08acea046b82e0da93860344, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10.12
+      objectReference: {fileID: 0}
     - target: {fileID: 8128674297949242868, guid: a85075cc08acea046b82e0da93860344, type: 3}
       propertyPath: m_Name
       value: Sphere
@@ -424,7 +432,7 @@ Transform:
   m_GameObject: {fileID: 1768117648}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.011185, y: -0.6848423, z: 7.3878174}
+  m_LocalPosition: {x: -12.26, y: -0.6848423, z: 7.3878174}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -503,6 +511,18 @@ PrefabInstance:
     - target: {fileID: 3648065987437342784, guid: dec9fa0d2f3b1f147983bfd44b55ce5c, type: 3}
       propertyPath: m_Name
       value: JellyBear_ori
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108063112804179061, guid: dec9fa0d2f3b1f147983bfd44b55ce5c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108063112804179061, guid: dec9fa0d2f3b1f147983bfd44b55ce5c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108063112804179061, guid: dec9fa0d2f3b1f147983bfd44b55ce5c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 4108063112804179061, guid: dec9fa0d2f3b1f147983bfd44b55ce5c, type: 3}
       propertyPath: m_LocalPosition.x

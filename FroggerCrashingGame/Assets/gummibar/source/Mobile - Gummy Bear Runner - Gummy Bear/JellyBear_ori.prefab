@@ -41,7 +41,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3648065987437342784}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 1000
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -188,4 +188,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveUntilXThenDestroy
   targetObject: {fileID: 8724030872539823772, guid: 9d50fc89f2e333b49b9a113f67fa4993, type: 3}
-  speed: 10
+  speed: 5
