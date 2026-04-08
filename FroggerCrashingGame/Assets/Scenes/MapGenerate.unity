@@ -119,143 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &330585543
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 330585546}
-  - component: {fileID: 330585545}
-  - component: {fileID: 330585544}
-  - component: {fileID: 330585547}
-  m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!81 &330585544
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330585543}
-  m_Enabled: 1
---- !u!20 &330585545
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330585543}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_Iso: 200
-  m_ShutterSpeed: 0.005
-  m_Aperture: 16
-  m_FocusDistance: 10
-  m_FocalLength: 50
-  m_BladeCount: 5
-  m_Curvature: {x: 2, y: 11}
-  m_BarrelClipping: 0.25
-  m_Anamorphism: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: -1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!4 &330585546
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330585543}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &330585547
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330585543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 0
-  m_Cameras: []
-  m_RendererIndex: -1
-  m_VolumeLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  m_VolumeTrigger: {fileID: 0}
-  m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 1
-  m_Antialiasing: 0
-  m_AntialiasingQuality: 2
-  m_StopNaN: 0
-  m_Dithering: 0
-  m_ClearDepth: 1
-  m_AllowXRRendering: 1
-  m_AllowHDROutput: 1
-  m_UseScreenCoordOverride: 0
-  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
-  m_RequiresDepthTexture: 0
-  m_RequiresColorTexture: 0
-  m_TaaSettings:
-    m_Quality: 3
-    m_FrameInfluence: 0.1
-    m_JitterScale: 1
-    m_MipBias: 0
-    m_VarianceClampScale: 0.9
-    m_ContrastAdaptiveSharpening: 0
-  m_Version: 2
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,7 +304,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1267863208}
-  - component: {fileID: 1267863207}
+  - component: {fileID: 1267863209}
   m_Layer: 0
   m_Name: MapGenerate
   m_TagString: Untagged
@@ -449,78 +312,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1267863207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1267863206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42b683ae935ded648bea3feeec9fb64b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MapGenerator
-  width: 100
-  rows: 10
-  rowHeight: 1
-  grassPrefab: {fileID: 885093930013912725, guid: e106448523f44b84b8cbe42c594bb0e7, type: 3}
-  roadPrefab: {fileID: 1787465748106635865, guid: 43b03a393aa0a4a43a1dc38e477295ca, type: 3}
-  riverPrefab: {fileID: 890269124117884915, guid: 8aaad60c1efb3e54583d7202f6b20540, type: 3}
-  finishPrefab: {fileID: 300821811135799967, guid: 8aff109ee00159f418f49ceb027eeece, type: 3}
-  carPrefabs: []
-  logPrefabs: []
-  rowDefinitions:
-  - laneType: 0
-    obstacleSpacing: 1
-    obstacleChance: 100
-    obstacleSpeed: 0
-    moveRight: 1
-  - laneType: 1
-    obstacleSpacing: 0
-    obstacleChance: 50
-    obstacleSpeed: 0
-    moveRight: 1
-  - laneType: 1
-    obstacleSpacing: 0
-    obstacleChance: 75
-    obstacleSpeed: 0
-    moveRight: 1
-  - laneType: 2
-    obstacleSpacing: 0
-    obstacleChance: 75
-    obstacleSpeed: 0
-    moveRight: 1
-  - laneType: 2
-    obstacleSpacing: 0
-    obstacleChance: 75
-    obstacleSpeed: 0
-    moveRight: 1
-  - laneType: 0
-    obstacleSpacing: 0
-    obstacleChance: 75
-    obstacleSpeed: 0
-    moveRight: 1
-  - laneType: 1
-    obstacleSpacing: 0
-    obstacleChance: 75
-    obstacleSpeed: 0
-    moveRight: 1
-  - laneType: 1
-    obstacleSpacing: 0
-    obstacleChance: 75
-    obstacleSpeed: 0
-    moveRight: 1
-  - laneType: 0
-    obstacleSpacing: 0
-    obstacleChance: 75
-    obstacleSpeed: 0
-    moveRight: 1
-  - laneType: 3
-    obstacleSpacing: 0
-    obstacleChance: 75
-    obstacleSpeed: 0
-    moveRight: 1
 --- !u!4 &1267863208
 Transform:
   m_ObjectHideFlags: 0
@@ -536,11 +327,91 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1267863209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267863206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d09be5ae04089e741a02ded558e0b2cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMapGen
+  mapLength: 1000
+  roadWidth: 1000
+  segmentLength: 10
+  roadPrefab: {fileID: 1787465748106635865, guid: 43b03a393aa0a4a43a1dc38e477295ca, type: 3}
+  frogPrefab: {fileID: 2503729970921295471, guid: 90596b4262df86f4d8f289835111ff29, type: 3}
+  obstaclePrefab: {fileID: 5140935179026309745, guid: 6d84ec5699b9e9449b0f821c4b292157, type: 3}
+  frogsPerSegment: 3
+  frogSpawnHeight: 1
+  frogSpeed: 2
+  frogJumpInterval: 5
+  obstacleChance: 1
+--- !u!1001 &1457216247
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 828283591341227094, guid: a85075cc08acea046b82e0da93860344, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 828283591341227094, guid: a85075cc08acea046b82e0da93860344, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 828283591341227094, guid: a85075cc08acea046b82e0da93860344, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 12.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 828283591341227094, guid: a85075cc08acea046b82e0da93860344, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 828283591341227094, guid: a85075cc08acea046b82e0da93860344, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 828283591341227094, guid: a85075cc08acea046b82e0da93860344, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 828283591341227094, guid: a85075cc08acea046b82e0da93860344, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 828283591341227094, guid: a85075cc08acea046b82e0da93860344, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 828283591341227094, guid: a85075cc08acea046b82e0da93860344, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 828283591341227094, guid: a85075cc08acea046b82e0da93860344, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8128674297949242868, guid: a85075cc08acea046b82e0da93860344, type: 3}
+      propertyPath: m_Name
+      value: PurpleCar
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a85075cc08acea046b82e0da93860344, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 330585546}
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 1267863208}
+  - {fileID: 1457216247}

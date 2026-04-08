@@ -152,8 +152,8 @@ GameObject:
   - component: {fileID: 2526347096989294714}
   - component: {fileID: 6327111436725737480}
   m_Layer: 0
-  m_Name: Sphere
-  m_TagString: Untagged
+  m_Name: PurpleCar
+  m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
