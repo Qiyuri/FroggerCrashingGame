@@ -50,34 +50,29 @@ public class SphereCarController : MonoBehaviour
         rb.linearDamping = 0f;
         rb.angularDamping = 0f;
 
-        // Beperk rotatie op x- en z-as om kantelen te voorkomen
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
     }
 
     void Update()
     {
-        // Input ophalen
-        throttle = Input.GetAxisRaw("Vertical");   // W/S of pijltjestoetsen omhoog/omlaag
-        steer = Input.GetAxisRaw("Horizontal");    // A/D of pijltjestoetsen links/rechts
+        throttle = Input.GetAxisRaw("Vertical");
+        steer = Input.GetAxisRaw("Horizontal");
         brake = Input.GetKey(KeyCode.Space);
-        handbrake = Input.GetKey(KeyCode.LeftShift); // Handrem met linker Shift
+        handbrake = Input.GetKey(KeyCode.LeftShift);
     }
 
     void FixedUpdate()
     {
         GroundCheck();
 
-        // Pas drag aan afhankelijk van grondcontact en remmen
         rb.linearDamping = isGrounded ? (brake ? brakeDrag : groundDrag) : airDrag;
 
         Vector3 velocity = rb.linearVelocity;
         float speed = new Vector3(velocity.x, 0f, velocity.z).magnitude;
 
-        // Voorwaartse richting geprojecteerd op grondvlak
         Vector3 forwardOnGround = Vector3.ProjectOnPlane(transform.forward, groundNormal).normalized;
         if (forwardOnGround.sqrMagnitude < 0.001f) forwardOnGround = transform.forward;
 
-        // Acceleratie en snelheidslimiet
         if (isGrounded)
         {
             float accel = throttle >= 0f ? acceleration : reverseAcceleration;
@@ -89,19 +84,17 @@ public class SphereCarController : MonoBehaviour
             if (Mathf.Abs(throttle) > 0.01f && canAccelerateForward)
             {
                 Vector3 force = forwardOnGround * (throttle * accel);
-                force.y = 0f; // Zorg dat kracht horizontaal is
+                force.y = 0f;
                 rb.AddForce(force, ForceMode.Acceleration);
             }
         }
         else
         {
-            // Kleine luchtcontrole
             Vector3 airForce = transform.forward * (throttle * (acceleration * 0.25f));
             airForce.y = 0f;
             rb.AddForce(airForce, ForceMode.Acceleration);
         }
 
-        // Sturen
         if (isGrounded)
         {
             float speed01 = Mathf.Clamp01(speed / Mathf.Max(0.01f, maxSpeed));
@@ -113,10 +106,9 @@ public class SphereCarController : MonoBehaviour
             {
                 Quaternion turn = Quaternion.AngleAxis(steerAmount, groundNormal);
                 Vector3 newVel = turn * rb.linearVelocity;
-                newVel.y = rb.linearVelocity.y; // behoud verticale snelheid
+                newVel.y = rb.linearVelocity.y;
                 rb.linearVelocity = newVel;
 
-                // Auto alleen om y-as draaien, voorkom kantelen
                 Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
                 if (flatVel.sqrMagnitude > 0.1f)
                 {
@@ -127,7 +119,6 @@ public class SphereCarController : MonoBehaviour
             }
         }
 
-        // Zijdelingse grip (vermindert glijden)
         if (isGrounded)
         {
             Vector3 rightOnGround = Vector3.Cross(groundNormal, forwardOnGround).normalized;
@@ -140,7 +131,6 @@ public class SphereCarController : MonoBehaviour
             gripForce.y = 0f;
             rb.AddForce(gripForce, ForceMode.Acceleration);
 
-            // Handrem driftkracht in stuurrichting
             if (handbrake && Mathf.Abs(steer) > 0.1f)
             {
                 Vector3 driftDirection = rightOnGround * Mathf.Sign(steer);
@@ -150,7 +140,6 @@ public class SphereCarController : MonoBehaviour
             }
         }
 
-        // Beperk horizontale snelheid tot maxSpeed
         Vector3 horizontalVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
         if (horizontalVelocity.magnitude > maxSpeed)
         {
@@ -158,7 +147,6 @@ public class SphereCarController : MonoBehaviour
             rb.linearVelocity = new Vector3(limitedVelocity.x, rb.linearVelocity.y, limitedVelocity.z);
         }
 
-        // Visuele rotatie van de auto
         if (visualBody != null)
         {
             Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
@@ -169,7 +157,6 @@ public class SphereCarController : MonoBehaviour
             }
         }
 
-        // Stabiliseer rotatie om kantelen te voorkomen
         Vector3 euler = transform.rotation.eulerAngles;
         euler.x = 0f;
         euler.z = 0f;
@@ -178,8 +165,9 @@ public class SphereCarController : MonoBehaviour
 
     private void GroundCheck()
     {
-        Ray ray = new Ray(transform.position, Vector3.down);
-        if (Physics.Raycast(ray, out RaycastHit hit, groundRayLength, groundMask, QueryTriggerInteraction.Ignore))
+        float checkDistance = groundRayLength + 0.2f;
+        Ray ray = new Ray(transform.position + Vector3.up * 0.1f, Vector3.down);
+        if (Physics.SphereCast(ray, 0.3f, out RaycastHit hit, checkDistance, groundMask, QueryTriggerInteraction.Ignore))
         {
             isGrounded = true;
             groundNormal = hit.normal;
