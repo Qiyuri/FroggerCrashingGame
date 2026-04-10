@@ -4,14 +4,15 @@ using UnityEngine;
 public class RoadManager : MonoBehaviour
 {
     [Header("Prefabs")]
-    public GameObject[] roadPrefabs;
+    public GameObject[] roadPrefabs;          // Voor de hoofdweg (center lane)
+    public GameObject[] sideLanePrefabs;      // Voor de zijlanes (links en rechts)
     public Transform player;
 
     [Header("Chunk grootte")]
     [Tooltip("Hoe ver elke chunk zich uitstrekt in de rijrichting (Z-as)")]
     public float chunkLength = 20f;
 
-    [Tooltip("Breedte van een chunk — alleen nodig als je meerdere rijbanen naast elkaar wil")]
+    [Tooltip("Breedte van een chunk — afstand tussen lanes op de X-as")]
     public float chunkWidth = 10f;
 
     [Header("Spawn afstand")]
@@ -53,13 +54,26 @@ public class RoadManager : MonoBehaviour
 
     void SpawnChunk()
     {
-        GameObject prefab = roadPrefabs[Random.Range(0, roadPrefabs.Length)];
+        // Spawn hoofdweg chunk in het midden
+        GameObject centerPrefab = roadPrefabs[Random.Range(0, roadPrefabs.Length)];
+        Vector3 centerPos = new Vector3(0f, 0f, spawnZ);
+        GameObject centerChunk = Instantiate(centerPrefab, centerPos, Quaternion.identity);
+        activeChunks.Add(centerChunk);
 
-        // Spawn op de huidige Z positie, gecentreerd op X=0 (of pas aan voor meerdere rijbanen)
-        Vector3 pos = new Vector3(0f, 0f, spawnZ);
-        GameObject chunk = Instantiate(prefab, pos, Quaternion.identity);
-        activeChunks.Add(chunk);
+        // Spawn zijlanes links en rechts als sideLanePrefabs zijn ingesteld
+        if (sideLanePrefabs != null && sideLanePrefabs.Length > 0)
+        {
+            GameObject sidePrefabLeft = sideLanePrefabs[Random.Range(0, sideLanePrefabs.Length)];
+            Vector3 leftPos = new Vector3(-chunkWidth, 0f, spawnZ);
+            GameObject leftChunk = Instantiate(sidePrefabLeft, leftPos, Quaternion.identity);
+            activeChunks.Add(leftChunk);
 
-        spawnZ += chunkLength;   // Volgende chunk begint precies hier
+            GameObject sidePrefabRight = sideLanePrefabs[Random.Range(0, sideLanePrefabs.Length)];
+            Vector3 rightPos = new Vector3(chunkWidth, 0f, spawnZ);
+            GameObject rightChunk = Instantiate(sidePrefabRight, rightPos, Quaternion.identity);
+            activeChunks.Add(rightChunk);
+        }
+
+        spawnZ += chunkLength;   // Volgende chunk begint hier
     }
 }

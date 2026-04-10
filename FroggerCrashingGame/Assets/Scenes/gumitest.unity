@@ -358,6 +358,10 @@ PrefabInstance:
       value: Roads
       objectReference: {fileID: 0}
     - target: {fileID: 2372082175589642720, guid: 64ca954921bf7e240975fe5568b4c48a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 231.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2372082175589642720, guid: 64ca954921bf7e240975fe5568b4c48a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 43.89178
       objectReference: {fileID: 0}
@@ -367,7 +371,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2372082175589642720, guid: 64ca954921bf7e240975fe5568b4c48a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 163.38907
+      value: -249042
       objectReference: {fileID: 0}
     - target: {fileID: 2372082175589642720, guid: 64ca954921bf7e240975fe5568b4c48a, type: 3}
       propertyPath: m_LocalRotation.w
