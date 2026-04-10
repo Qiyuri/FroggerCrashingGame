@@ -103,7 +103,7 @@ public class RoadManager : MonoBehaviour
         if (enemyPrefab != null && Random.value < enemySpawnChance)
         {
             Vector3 enemyPos = new Vector3(-chunkWidth, 0f, spawnZ);
-            GameObject enemy = Instantiate(enemyPrefab, enemyPos, Quaternion.identity);
+            GameObject enemy = Instantiate(enemyPrefab, enemyPos, Quaternion.Euler(0, 90, 90));
             activeChunks.Add(enemy);
 
             ObstacleMover mover = enemy.GetComponent<ObstacleMover>();
