@@ -1,16 +1,24 @@
 using UnityEngine;
 
-public class SimpleMoveForward : MonoBehaviour
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(MeshCollider))]
+public class RigidbodyMoveForward : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public float speed = 5f; // Instelbare snelheid
+
+    private Rigidbody rb;
+
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
+        // Zorg dat Rigidbody niet door physics wordt beïnvloed door rotatie (optioneel)
+        rb.freezeRotation = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        // Beweeg het object vooruit met Rigidbody
+        Vector3 forwardMovement = transform.forward * speed * Time.fixedDeltaTime;
+        rb.MovePosition(rb.position + forwardMovement);
     }
 }

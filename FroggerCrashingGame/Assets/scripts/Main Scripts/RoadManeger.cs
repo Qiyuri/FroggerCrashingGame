@@ -99,7 +99,7 @@ public class RoadManager : MonoBehaviour
             activeChunks.Add(rightChunk);
         }
 
-        // Eventueel een vijand spawnen op deze nieuwe chunk
+        // Eventueel een vijand spawnen op deze nieuwe chunk (zoals origineel)
         if (enemyPrefab != null && Random.value < enemySpawnChance)
         {
             Vector3 enemyPos = new Vector3(-chunkWidth, 0f, spawnZ);
@@ -115,7 +115,7 @@ public class RoadManager : MonoBehaviour
             mover.rightBound = chunkWidth * 2f;
         }
 
-        // Spawn obstacles on the road
+        // Spawn obstacles on the road, random voor of achter
         if (obstaclePrefabs != null && obstaclePrefabs.Length > 0)
         {
             int numObstacles = Random.Range(0, maxObstaclesPerChunk + 1);
@@ -123,7 +123,11 @@ public class RoadManager : MonoBehaviour
             {
                 GameObject obsPrefab = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
                 float randomX = Random.Range(-chunkWidth / 2f, chunkWidth / 2f);
-                float randomZ = spawnZ + Random.Range(0f, chunkLength);
+
+                // Kies random of obstakel voor of achter de chunk wordt gespawnd
+                bool spawnInFront = (Random.value > 0.5f);
+                float randomZ = spawnInFront ? spawnZ + Random.Range(0f, chunkLength) : spawnZ - Random.Range(0f, chunkLength);
+
                 Vector3 obsPos = new Vector3(randomX, 0f, randomZ);
                 GameObject obs = Instantiate(obsPrefab, obsPos, Quaternion.identity);
                 obs.AddComponent<ObstacleTag>();
