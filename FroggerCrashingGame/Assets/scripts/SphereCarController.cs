@@ -9,9 +9,9 @@ public class SphereCarController : MonoBehaviour
     public float reverseAcceleration = 28f;
 
     [Header("Steering")]
-    public float steerStrength = 8f;
-    public float lowSpeedSteerBoost = 1.6f;
-    public float highSpeedSteerReduction = 0.65f;
+    public float steerStrength = 10f; // Increased for more responsive steering
+    public float lowSpeedSteerBoost = 1.8f;
+    public float highSpeedSteerReduction = 0.6f;
 
     [Header("Braking / Drag")]
     public float groundDrag = 1.2f;
@@ -19,9 +19,9 @@ public class SphereCarController : MonoBehaviour
     public float brakeDrag = 6.5f;
 
     [Header("Grip / Drift")]
-    public float lateralGrip = 10f;
-    public float handbrakeGripMultiplier = 0.35f;
-    public float handbrakeDriftForce = 15f;
+    public float lateralGrip = 8f; // Lowered slightly for easier drifting
+    public float handbrakeGripMultiplier = 0.3f; // Less grip on handbrake for more slide
+    public float handbrakeDriftForce = 25f; // Increased to push drift more
 
     [Header("Grounding")]
     public float groundRayLength = 0.65f;
@@ -100,20 +100,22 @@ public class SphereCarController : MonoBehaviour
             float speed01 = Mathf.Clamp01(speed / Mathf.Max(0.01f, maxSpeed));
             float steerScale = Mathf.Lerp(lowSpeedSteerBoost, highSpeedSteerReduction, speed01);
 
+            // Steering amount with speed scaling
             float steerAmount = steer * steerStrength * steerScale * Mathf.Clamp(speed * 0.25f, 0f, 1f);
 
             if (Mathf.Abs(steerAmount) > 0.0001f)
             {
+                // Apply rotation to velocity for turning
                 Quaternion turn = Quaternion.AngleAxis(steerAmount, groundNormal);
                 Vector3 newVel = turn * rb.linearVelocity;
                 newVel.y = rb.linearVelocity.y;
                 rb.linearVelocity = newVel;
 
+                // Rotate car visually to match velocity direction
                 Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
                 if (flatVel.sqrMagnitude > 0.1f)
                 {
-                    Vector3 flatForward = flatVel.normalized;
-                    Quaternion targetRot = Quaternion.LookRotation(flatForward, Vector3.up);
+                    Quaternion targetRot = Quaternion.LookRotation(flatVel.normalized, Vector3.up);
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.fixedDeltaTime * 5f);
                 }
             }
@@ -124,22 +126,30 @@ public class SphereCarController : MonoBehaviour
             Vector3 rightOnGround = Vector3.Cross(groundNormal, forwardOnGround).normalized;
             float lateralSpeed = Vector3.Dot(rb.linearVelocity, rightOnGround);
 
-            float grip = lateralGrip * (brake ? handbrakeGripMultiplier : 1f);
+            // Reduce grip when handbrake is applied for more drift
+            float grip = lateralGrip * (handbrake ? handbrakeGripMultiplier : 1f);
 
+            // Apply lateral grip force to reduce sideways sliding
             Vector3 lateralVel = rightOnGround * lateralSpeed;
             Vector3 gripForce = -lateralVel * grip;
             gripForce.y = 0f;
             rb.AddForce(gripForce, ForceMode.Acceleration);
 
+            // Apply extra drift force when handbrake is active and steering
             if (handbrake && Mathf.Abs(steer) > 0.1f)
             {
                 Vector3 driftDirection = rightOnGround * Mathf.Sign(steer);
                 Vector3 driftForce = driftDirection * handbrakeDriftForce;
                 driftForce.y = 0f;
                 rb.AddForce(driftForce, ForceMode.Acceleration);
+
+                // Optional: add a small counter-steer torque to simulate drift correction
+                float counterSteer = -steer * 0.5f;
+                rb.AddTorque(Vector3.up * counterSteer, ForceMode.Acceleration);
             }
         }
 
+        // Clamp horizontal velocity to max speed to avoid clipping and excessive speed
         Vector3 horizontalVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
         if (horizontalVelocity.magnitude > maxSpeed)
         {
@@ -147,6 +157,7 @@ public class SphereCarController : MonoBehaviour
             rb.linearVelocity = new Vector3(limitedVelocity.x, rb.linearVelocity.y, limitedVelocity.z);
         }
 
+        // Smooth visual body rotation
         if (visualBody != null)
         {
             Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
@@ -157,6 +168,7 @@ public class SphereCarController : MonoBehaviour
             }
         }
 
+        // Keep car upright
         Vector3 euler = transform.rotation.eulerAngles;
         euler.x = 0f;
         euler.z = 0f;
