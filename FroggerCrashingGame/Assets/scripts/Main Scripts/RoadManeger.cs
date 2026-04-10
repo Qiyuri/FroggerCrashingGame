@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RoadManager : MonoBehaviour
 {
@@ -21,6 +22,17 @@ public class RoadManager : MonoBehaviour
 
     [Tooltip("Hoeveel chunks achter de speler bewaard blijven voor despawn")]
     public int chunksToKeepBehind = 2;
+
+    [Header("Enemy spawn")]
+    [Tooltip("Prefab voor de vijand die van links naar rechts beweegt")]
+    public GameObject enemyPrefab;
+
+    [Range(0f, 1f)]
+    [Tooltip("Kans dat er bij het maken van een nieuwe chunk een vijand verschijnt")]
+    public float enemySpawnChance = 0.25f;
+
+    [Tooltip("Snelheid waarmee de vijand naar rechts beweegt")]
+    public float enemySpeed = 2f;
 
     private List<GameObject> activeChunks = new List<GameObject>();
     private float spawnZ = 0f;
@@ -50,6 +62,12 @@ public class RoadManager : MonoBehaviour
                 activeChunks.RemoveAt(i);
             }
         }
+
+        // Check if player is on side lanes
+        if (Mathf.Abs(player.position.x) > chunkWidth)
+        {
+            SceneManager.LoadScene("GameOver");
+        }
     }
 
     void SpawnChunk()
@@ -72,6 +90,22 @@ public class RoadManager : MonoBehaviour
             Vector3 rightPos = new Vector3(chunkWidth, 0f, spawnZ);
             GameObject rightChunk = Instantiate(sidePrefabRight, rightPos, Quaternion.identity);
             activeChunks.Add(rightChunk);
+        }
+
+        // Eventueel een vijand spawnen op deze nieuwe chunk
+        if (enemyPrefab != null && Random.value < enemySpawnChance)
+        {
+            Vector3 enemyPos = new Vector3(-chunkWidth, 0f, spawnZ);
+            GameObject enemy = Instantiate(enemyPrefab, enemyPos, Quaternion.identity);
+            activeChunks.Add(enemy);
+
+            ObstacleMover mover = enemy.GetComponent<ObstacleMover>();
+            if (mover == null)
+                mover = enemy.AddComponent<ObstacleMover>();
+
+            mover.speed = Mathf.Abs(enemySpeed);
+            mover.leftBound = -chunkWidth * 2f;
+            mover.rightBound = chunkWidth * 2f;
         }
 
         spawnZ += chunkLength;   // Volgende chunk begint hier

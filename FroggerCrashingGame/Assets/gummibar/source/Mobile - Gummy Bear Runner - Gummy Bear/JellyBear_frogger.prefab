@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 892468668535579680}
   m_Layer: 0
   m_Name: JellyBear_frogger
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -202,7 +202,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16d8e2074600cb428218a71e18d006c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FrogController
-  speed: 2
+  speed: 1
   jumpInterval: 1
   jumpHeight: 1
   moveRange: 5
+  scoreSystem: {fileID: 6793788910988306693, guid: f5e90dcdbd1ca884685e10b9a792157d, type: 3}

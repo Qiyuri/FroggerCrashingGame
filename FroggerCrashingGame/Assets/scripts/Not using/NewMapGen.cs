@@ -19,7 +19,8 @@ public class NewMapGen : MonoBehaviour
     public float frogJumpInterval = 1f;
 
     [Header("Obstacles")]
-    public float obstacleChance = 0.2f; // Chance to spawn obstacle per segment
+    public int obstaclesPerSegment = 1; // Number of obstacles to spawn per segment
+    public float obstacleChance = 0.2f; // Chance to spawn obstacle per segment (deprecated - use obstaclesPerSegment)
 
     private void Start()
     {
@@ -53,10 +54,13 @@ public class NewMapGen : MonoBehaviour
                 SpawnFrogsOnSegment(currentPosition, segmentLength, roadWidth);
             }
 
-            // Spawn obstacles occasionally
-            if (obstaclePrefab != null && Random.value < obstacleChance)
+            // Spawn obstacles
+            if (obstaclePrefab != null)
             {
-                SpawnObstacleOnSegment(currentPosition, segmentLength, roadWidth);
+                for (int j = 0; j < obstaclesPerSegment; j++)
+                {
+                    SpawnObstacleOnSegment(currentPosition, segmentLength, roadWidth);
+                }
             }
 
             // Move to next segment

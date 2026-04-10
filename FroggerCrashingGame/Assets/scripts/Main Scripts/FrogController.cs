@@ -6,6 +6,7 @@ public class FrogController : MonoBehaviour
     public float jumpInterval = 1f;
     public float jumpHeight = 1f;
     public float moveRange = 5f; // How far the frog can move from spawn
+    public ScoreSystem scoreSystem; // Reference to the ScoreSystem
 
     private Vector3 startPosition;
     private Vector3 targetPosition;
@@ -80,13 +81,29 @@ public class FrogController : MonoBehaviour
         targetPosition = new Vector3(x, startPosition.y, z);
     }
 
-    // Optional: Handle being hit by car
+    // Optional: Handle being hit by car or enemy
     void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Collision detected with: " + collision.gameObject.name + " Tag: " + collision.gameObject.tag);
         if (collision.gameObject.CompareTag("Car"))
         {
             // Frog gets squished - you could play sound, particle effect, etc.
             Destroy(gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Enemy"))
+        {
+            // Destroy the enemy when the frog collides with it
+            Destroy(collision.gameObject);
+            // Increase score
+            if (scoreSystem != null)
+            {
+                scoreSystem.AddScore(10); // Add 10 points for hitting an enemy
+                Debug.Log("Score increased! New score should be updated.");
+            }
+            else
+            {
+                Debug.LogError("ScoreSystem reference is null! Make sure to assign it in the Inspector.");
+            }
         }
     }
 }
