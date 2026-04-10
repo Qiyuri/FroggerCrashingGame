@@ -2,17 +2,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GameOverSystem : MonoBehaviour
+public class MainMenuSystem : MonoBehaviour
 {
-    public Button restartButton;
+    public Button startButton;
     public Button quitButton;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (restartButton != null)
+        if (startButton != null)
         {
-            restartButton.onClick.AddListener(RestartGame);
+            startButton.onClick.AddListener(StartGame);
         }
 
         if (quitButton != null)
@@ -27,7 +27,7 @@ public class GameOverSystem : MonoBehaviour
         
     }
 
-    private void RestartGame()
+    private void StartGame()
     {
         // Load the main game scene (assuming "SampleScene" is the gameplay scene)
         SceneManager.LoadScene("MapGenerate");
@@ -36,6 +36,6 @@ public class GameOverSystem : MonoBehaviour
     private void QuitGame()
     {
         // Quit the application
-        SceneManager.LoadScene("MainMenu");
+        Application.Quit();
     }
 }
