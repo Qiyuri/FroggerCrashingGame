@@ -7,19 +7,27 @@ public class FrogController : MonoBehaviour
     public float jumpInterval = 1f;
     public float jumpHeight = 1f;
     public float moveRange = 5f; // How far the frog can move from spawn
-    public ScoreSystem scoreSystem; // Reference to the ScoreSystem
+    // public ScoreSystem scoreSystem; // Reference to the ScoreSystem - now found automatically
 
     private Vector3 startPosition;
     private Vector3 targetPosition;
     private float lastJumpTime;
     private bool isJumping = false;
     private float jumpStartY;
+    private ScoreSystem scoreSystem; // Cached reference
 
     void Start()
     {
         startPosition = transform.position;
         SetNewTarget();
         lastJumpTime = Time.time;
+
+        // Find the ScoreSystem automatically
+        scoreSystem = FindObjectOfType<ScoreSystem>();
+        if (scoreSystem == null)
+        {
+            Debug.LogWarning("ScoreSystem not found in the scene! Make sure there's a GameObject with the ScoreSystem component.");
+        }
     }
 
     void Update()
@@ -103,7 +111,7 @@ public class FrogController : MonoBehaviour
             }
             else
             {
-                Debug.LogError("ScoreSystem reference is null! Make sure to assign it in the Inspector.");
+                Debug.LogError("ScoreSystem not found! Make sure there's a GameObject with the ScoreSystem component in the scene.");
             }
         }
     }

@@ -328,7 +328,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1643388597316322568}
-  - component: {fileID: 2075519507174037078}
+  - component: {fileID: 9065382858567397871}
   m_Layer: 0
   m_Name: ScoreSystem
   m_TagString: Untagged
@@ -353,7 +353,7 @@ Transform:
   - {fileID: 6722772652911571650}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2075519507174037078
+--- !u!114 &9065382858567397871
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -32,7 +32,11 @@ public class SphereCarController : MonoBehaviour
     public Transform visualBody;
     public float visualTurnSmoothing = 10f;
 
+    [Header("Score System")]
+    // public ScoreSystem scoreSystem; // Reference to the ScoreSystem - now found automatically
+
     private Rigidbody rb;
+    private ScoreSystem scoreSystem; // Cached reference
 
     private float throttle;
     private float steer;
@@ -52,6 +56,13 @@ public class SphereCarController : MonoBehaviour
         rb.angularDamping = 0f;
 
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+
+        // Find the ScoreSystem automatically
+        scoreSystem = FindObjectOfType<ScoreSystem>();
+        if (scoreSystem == null)
+        {
+            Debug.LogWarning("ScoreSystem not found in the scene! Make sure there's a GameObject with the ScoreSystem component.");
+        }
     }
 
     void Update()
@@ -198,6 +209,20 @@ public class SphereCarController : MonoBehaviour
         {
             // Hit an obstacle - game over
             SceneManager.LoadScene("GameOver");
+        }
+        else if (collision.gameObject.CompareTag("Enemy"))
+        {
+            // Hit an enemy - destroy it and increase score
+            Destroy(collision.gameObject);
+            if (scoreSystem != null)
+            {
+                scoreSystem.AddScore(10); // Add 10 points for hitting an enemy
+                Debug.Log("Score increased! New score should be updated.");
+            }
+            else
+            {
+                Debug.LogError("ScoreSystem not found! Make sure there's a GameObject with the ScoreSystem component in the scene.");
+            }
         }
     }
 }
