@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody))]
 public class SphereCarController : MonoBehaviour
@@ -188,6 +189,15 @@ public class SphereCarController : MonoBehaviour
         {
             isGrounded = false;
             groundNormal = Vector3.up;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<ObstacleTag>() != null)
+        {
+            // Hit an obstacle - game over
+            SceneManager.LoadScene("GameOver");
         }
     }
 }

@@ -206,4 +206,4 @@ MonoBehaviour:
   jumpInterval: 1
   jumpHeight: 1
   moveRange: 5
-  scoreSystem: {fileID: 6793788910988306693, guid: f5e90dcdbd1ca884685e10b9a792157d, type: 3}
+  scoreSystem: {fileID: 2075519507174037078, guid: 31be946eb6e7cb045ae52bd9260ea29e, type: 3}

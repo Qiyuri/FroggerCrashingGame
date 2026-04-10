@@ -34,6 +34,13 @@ public class RoadManager : MonoBehaviour
     [Tooltip("Snelheid waarmee de vijand naar rechts beweegt")]
     public float enemySpeed = 2f;
 
+    [Header("Obstacle spawn")]
+    public GameObject[] obstaclePrefabs;
+
+    [Range(0, 10)]
+    [Tooltip("Maximum number of obstacles to spawn per chunk")]
+    public int maxObstaclesPerChunk = 2;
+
     private List<GameObject> activeChunks = new List<GameObject>();
     private float spawnZ = 0f;
 
@@ -106,6 +113,22 @@ public class RoadManager : MonoBehaviour
             mover.speed = Mathf.Abs(enemySpeed);
             mover.leftBound = -chunkWidth * 2f;
             mover.rightBound = chunkWidth * 2f;
+        }
+
+        // Spawn obstacles on the road
+        if (obstaclePrefabs != null && obstaclePrefabs.Length > 0)
+        {
+            int numObstacles = Random.Range(0, maxObstaclesPerChunk + 1);
+            for (int i = 0; i < numObstacles; i++)
+            {
+                GameObject obsPrefab = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
+                float randomX = Random.Range(-chunkWidth / 2f, chunkWidth / 2f);
+                float randomZ = spawnZ + Random.Range(0f, chunkLength);
+                Vector3 obsPos = new Vector3(randomX, 0f, randomZ);
+                GameObject obs = Instantiate(obsPrefab, obsPos, Quaternion.identity);
+                obs.AddComponent<ObstacleTag>();
+                activeChunks.Add(obs);
+            }
         }
 
         spawnZ += chunkLength;   // Volgende chunk begint hier

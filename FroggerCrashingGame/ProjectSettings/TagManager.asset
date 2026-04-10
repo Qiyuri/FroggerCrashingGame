@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Car
   - Enemy
+  - Obstacle
   layers:
   - Default
   - TransparentFX
